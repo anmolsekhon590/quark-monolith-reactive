@@ -1,5 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.security;
 
+import com.anmolsekhon.reactiveauthentication.constants.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

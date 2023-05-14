@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.services;
 
-import com.anmolsekhon.reactiveauthentication.security.Role;
+import com.anmolsekhon.reactiveauthentication.constants.Role;
 import com.anmolsekhon.reactiveauthentication.security.User;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
