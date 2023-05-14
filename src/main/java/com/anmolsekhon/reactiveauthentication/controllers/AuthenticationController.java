@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
 @RestController
-public class AuthenticationREST {
+public class AuthenticationController {
 
     private JWTUtil jwtUtil;
     private PBKDF2Encoder passwordEncoder;
