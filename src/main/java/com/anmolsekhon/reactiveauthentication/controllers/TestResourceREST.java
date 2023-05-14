@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-public class ResourceREST {
+public class TestResourceREST {
 
     @GetMapping("/resource/user")
     @PreAuthorize("hasRole('USER')")
