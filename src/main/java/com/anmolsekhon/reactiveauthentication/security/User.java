@@ -4,6 +4,8 @@ import com.anmolsekhon.reactiveauthentication.constants.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +17,12 @@ import java.util.stream.Collectors;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(value = "users")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
-
+    @Id
+    private String id;
     private String username;
 
     private String password;
