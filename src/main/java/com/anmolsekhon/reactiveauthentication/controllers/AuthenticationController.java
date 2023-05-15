@@ -3,6 +3,7 @@ package com.anmolsekhon.reactiveauthentication.controllers;
 import com.anmolsekhon.reactiveauthentication.models.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.models.AuthResponse;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
+import com.anmolsekhon.reactiveauthentication.security.User;
 import com.anmolsekhon.reactiveauthentication.services.UserService;
 import com.anmolsekhon.reactiveauthentication.utility.JWTUtil;
 import lombok.AllArgsConstructor;
@@ -24,9 +25,14 @@ public class AuthenticationController {
     @PostMapping("/login")
     public Mono<ResponseEntity<AuthResponse>> login(@RequestBody AuthRequest authRequest) {
         return userService.findByUsername(authRequest.getUsername())
-                .filter(userDetails -> authRequest.getPassword().equals(userDetails.getPassword()))
+                .filter(userDetails -> passwordEncoder.encode(authRequest.getPassword()).equals(userDetails.getPassword()))
                 .map(userDetails -> ResponseEntity.ok(new AuthResponse(jwtUtil.generateToken(userDetails))))
                 .switchIfEmpty(Mono.just(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build()));
+    }
+
+    @PostMapping("/register")
+    public Mono<User> register(@RequestBody AuthRequest authRequest) {
+        return userService.register(authRequest);
     }
 
 }
