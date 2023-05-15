@@ -20,7 +20,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PBKDF2Encoder passwordEncoder;
     private static final List<Role> DEFAULT_ROLES = new ArrayList<>() {{
-        this.add(Role.ROLE_ADMIN);
+        this.add(Role.ROLE_USER);
     }};
 
     public Mono<User> findByUsername(String username) {
