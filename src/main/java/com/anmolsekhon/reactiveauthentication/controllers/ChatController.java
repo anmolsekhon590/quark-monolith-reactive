@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/api/chat")
@@ -18,5 +20,10 @@ public class ChatController {
     @GetMapping
     public void send(@AuthenticationPrincipal String username,
                      @RequestBody Chat chat) {
+        chatService.send(Chat.builder()
+                .id(UUID.randomUUID().toString())
+                .sentTo(chat.getSentTo())
+                .message(chat.getMessage())
+                .build());
     }
 }
