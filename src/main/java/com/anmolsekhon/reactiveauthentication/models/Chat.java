@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class Chat {
     private String id;
     private String message;
-    private String sentBy;
     private String sentTo;
 }
