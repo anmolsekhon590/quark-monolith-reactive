@@ -1,7 +1,7 @@
 package com.anmolsekhon.reactiveauthentication.controllers;
 
-import com.anmolsekhon.reactiveauthentication.models.AuthRequest;
-import com.anmolsekhon.reactiveauthentication.models.AuthResponse;
+import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
+import com.anmolsekhon.reactiveauthentication.models.auth.AuthResponse;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
 import com.anmolsekhon.reactiveauthentication.security.User;
 import com.anmolsekhon.reactiveauthentication.services.UserService;

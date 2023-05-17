@@ -1,4 +1,4 @@
-package com.anmolsekhon.reactiveauthentication.models;
+package com.anmolsekhon.reactiveauthentication.models.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

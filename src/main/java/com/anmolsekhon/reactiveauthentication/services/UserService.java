@@ -1,7 +1,7 @@
 package com.anmolsekhon.reactiveauthentication.services;
 
 import com.anmolsekhon.reactiveauthentication.constants.Role;
-import com.anmolsekhon.reactiveauthentication.models.AuthRequest;
+import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
 import com.anmolsekhon.reactiveauthentication.security.User;
