@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "chat", groupId = "group_01")
-    public void consume(String event) {
-        System.out.println(event);
+    @KafkaListener(topics = "chat", groupId = "group_01", containerFactory = "chatKafkaListenerContainerFactory")
+    public void consume(Chat chat) {
+        System.out.println(chat);
     }
 }
