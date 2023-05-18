@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ChatService {
-    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, Chat> kafkaTemplate;
 
     public void send(Chat chat) {
-        kafkaTemplate.send("chat", chat.getMessage());
+        kafkaTemplate.send("chat", chat);
     }
 }
