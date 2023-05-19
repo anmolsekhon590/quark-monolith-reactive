@@ -4,8 +4,12 @@ import com.anmolsekhon.reactiveauthentication.models.Chat;
 import com.anmolsekhon.reactiveauthentication.services.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
@@ -19,6 +23,7 @@ public class ChatController {
                      @RequestBody Chat chat) {
         chatService.send(Chat.builder()
                 .id(UUID.randomUUID().toString())
+                .dateTime(LocalDateTime.now())
                 .sentTo(chat.getSentTo())
                 .message(chat.getMessage())
                 .build());
