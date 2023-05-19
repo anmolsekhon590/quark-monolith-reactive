@@ -14,6 +14,6 @@ import java.time.LocalDateTime;
 public class Chat {
     private String id;
     private String message;
-    private LocalDateTime dateTime;
+    private LocalDateTime createdAt;
     private String sentTo;
 }

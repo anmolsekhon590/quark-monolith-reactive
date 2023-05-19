@@ -23,7 +23,7 @@ public class ChatController {
                      @RequestBody Chat chat) {
         chatService.send(Chat.builder()
                 .id(UUID.randomUUID().toString())
-                .dateTime(LocalDateTime.now())
+                .createdAt(LocalDateTime.now())
                 .sentTo(chat.getSentTo())
                 .message(chat.getMessage())
                 .build());
