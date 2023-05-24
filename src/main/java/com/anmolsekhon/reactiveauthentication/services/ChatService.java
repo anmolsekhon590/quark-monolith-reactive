@@ -19,13 +19,14 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final TextEncryptor textEncryptor;
 
-    public void send(Chat chat) {
+    public void send(String username, Chat chat) {
         String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
 
         final Chat builtChat = Chat.builder()
                 .id(UUID.randomUUID().toString())
                 .createdAt(LocalDateTime.now())
                 .sentTo(chat.getSentTo())
+                .sentBy(username)
                 .message(encryptedMessage)
                 .build();
 

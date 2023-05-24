@@ -20,4 +20,5 @@ public class Chat {
     private String message;
     private LocalDateTime createdAt;
     private String sentTo;
+    private String sentBy;
 }
