@@ -10,8 +10,10 @@ import org.springframework.security.crypto.encrypt.TextEncryptor;
 @SpringBootApplication
 public class ReactiveAuthenticationApplication {
 
+	@SuppressWarnings("unused")
 	@Value("${quark.text-encryptor.password}")
 	private String password;
+	@SuppressWarnings("unused")
 	@Value("${quark.text-encryptor.salt}")
 	private String salt;
 
