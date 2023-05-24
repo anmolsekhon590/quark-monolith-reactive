@@ -19,3 +19,8 @@ springbootwebfluxjjwt:
   jjwt:
     secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
     expiration: 28800
+
+quark:
+  text-encryptor:
+    password: password
+    salt: 5c0744940b5c369b
