@@ -4,16 +4,19 @@ import com.anmolsekhon.reactiveauthentication.models.Chat;
 import com.anmolsekhon.reactiveauthentication.services.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/api/chat")
 public class ChatController {
     private final ChatService chatService;
+
+    @GetMapping
+    public Flux<Chat> getAllChats(@AuthenticationPrincipal String username) {
+        return chatService.getAllChats(username);
+    }
 
     @PostMapping
     public void send(@AuthenticationPrincipal String username,

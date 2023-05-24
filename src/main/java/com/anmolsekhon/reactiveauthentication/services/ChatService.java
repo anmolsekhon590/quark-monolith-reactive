@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -36,5 +37,16 @@ public class ChatService {
         //saving the chat to the database
         chatRepository.save(builtChat)
                 .subscribe();
+    }
+
+    public Flux<Chat> getAllChats(String username) {
+        return chatRepository.findAllBySentBy(username)
+                .map(chat -> Chat.builder()
+                        .id(chat.getId())
+                        .sentBy(chat.getSentBy())
+                        .sentTo(chat.getSentTo())
+                        .createdAt(chat.getCreatedAt())
+                        .message(textEncryptor.decrypt(chat.getMessage()))
+                        .build());
     }
 }
