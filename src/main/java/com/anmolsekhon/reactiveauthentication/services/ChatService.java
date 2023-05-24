@@ -40,7 +40,7 @@ public class ChatService {
     }
 
     public Flux<Chat> getAllChats(String username) {
-        return chatRepository.findAllBySentBy(username)
+        return chatRepository.findAllBySentByOrSentTo(username, username)
                 .map(chat -> Chat.builder()
                         .id(chat.getId())
                         .sentBy(chat.getSentBy())
