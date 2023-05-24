@@ -5,6 +5,7 @@ import com.anmolsekhon.reactiveauthentication.repositories.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -16,13 +17,16 @@ import java.util.UUID;
 public class ChatService {
     private final KafkaTemplate<String, Chat> kafkaTemplate;
     private final ChatRepository chatRepository;
+    private final TextEncryptor textEncryptor;
 
     public void send(Chat chat) {
+        String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
+
         final Chat builtChat = Chat.builder()
                 .id(UUID.randomUUID().toString())
                 .createdAt(LocalDateTime.now())
                 .sentTo(chat.getSentTo())
-                .message(chat.getMessage())
+                .message(encryptedMessage)
                 .build();
 
         // sends the message over Kafka
