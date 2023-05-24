@@ -21,11 +21,6 @@ public class ChatController {
     @PostMapping
     public void send(@AuthenticationPrincipal String username,
                      @RequestBody Chat chat) {
-        chatService.send(Chat.builder()
-                .id(UUID.randomUUID().toString())
-                .createdAt(LocalDateTime.now())
-                .sentTo(chat.getSentTo())
-                .message(chat.getMessage())
-                .build());
+        chatService.send(chat);
     }
 }
