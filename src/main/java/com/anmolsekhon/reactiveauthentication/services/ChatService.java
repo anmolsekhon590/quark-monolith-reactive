@@ -22,11 +22,7 @@ public class ChatService {
         kafkaTemplate.send("chat", chat);
 
         //saving the chat to the database
-        chatRepository.save(Chat.builder().id(UUID.randomUUID().toString())
-                        .sentTo(chat.getSentTo())
-                        .createdAt(LocalDateTime.now())
-                        .message(chat.getMessage())
-                        .build())
+        chatRepository.save(chat)
                 .subscribe();
     }
 }
