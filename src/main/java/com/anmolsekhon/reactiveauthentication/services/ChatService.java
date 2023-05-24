@@ -3,9 +3,14 @@ package com.anmolsekhon.reactiveauthentication.services;
 import com.anmolsekhon.reactiveauthentication.models.Chat;
 import com.anmolsekhon.reactiveauthentication.repositories.ChatRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ChatService {
@@ -17,6 +22,11 @@ public class ChatService {
         kafkaTemplate.send("chat", chat);
 
         //saving the chat to the database
-        chatRepository.save(chat);
+        chatRepository.save(Chat.builder().id(UUID.randomUUID().toString())
+                        .sentTo(chat.getSentTo())
+                        .createdAt(LocalDateTime.now())
+                        .message(chat.getMessage())
+                        .build())
+                .subscribe();
     }
 }
