@@ -27,7 +27,7 @@ public class ChatController {
     public Flux<Chat> getLatestChatForUser(@AuthenticationPrincipal String username) {
         return chatService.getLatestChatForUser(username)
                 .flatMap(chat -> Flux
-                        .zip(Flux.interval(Duration.ofSeconds(1)),
+                        .zip(Flux.interval(Duration.ofSeconds(2)),
                                 Flux.fromStream(Stream.generate(() -> chat))
                         ).map(Tuple2::getT2)
                 );
