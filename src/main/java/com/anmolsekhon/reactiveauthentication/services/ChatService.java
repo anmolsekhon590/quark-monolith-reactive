@@ -4,7 +4,6 @@ import com.anmolsekhon.reactiveauthentication.models.Chat;
 import com.anmolsekhon.reactiveauthentication.repositories.ChatRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -16,7 +15,6 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ChatService {
-    private final KafkaTemplate<String, Chat> kafkaTemplate;
     private final ChatRepository chatRepository;
     private final TextEncryptor textEncryptor;
 
@@ -30,9 +28,6 @@ public class ChatService {
                 .sentBy(username)
                 .message(encryptedMessage)
                 .build();
-
-        // sends the message over Kafka
-        kafkaTemplate.send("chat", builtChat);
 
         //saving the chat to the database
         chatRepository.save(builtChat)
