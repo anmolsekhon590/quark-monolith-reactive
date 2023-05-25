@@ -49,4 +49,8 @@ public class ChatService {
                         .message(textEncryptor.decrypt(chat.getMessage()))
                         .build());
     }
+
+    public Flux<Chat> getLatestChatForUser(String username) {
+        return chatRepository.findFirstBySentToOrderByCreatedAt(username);
+    }
 }

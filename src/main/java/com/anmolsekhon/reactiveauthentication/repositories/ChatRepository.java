@@ -6,4 +6,5 @@ import reactor.core.publisher.Flux;
 
 public interface ChatRepository extends ReactiveMongoRepository<Chat, String> {
     Flux<Chat> findAllBySentByOrSentTo(String sentBy, String sentTo);
+    Flux<Chat> findFirstBySentToOrderByCreatedAt(String sentTo);
 }
