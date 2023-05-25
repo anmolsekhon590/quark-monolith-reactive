@@ -21,7 +21,7 @@ public class ChatService {
     private final TextEncryptor textEncryptor;
 
     public void send(String username, Chat chat) {
-        String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
+        final String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
 
         final Chat builtChat = Chat.builder()
                 .id(UUID.randomUUID().toString())
