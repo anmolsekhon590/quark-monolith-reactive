@@ -46,6 +46,6 @@ public class ChatService {
     }
 
     public Flux<Chat> getLatestChatForUser(String username) {
-        return chatRepository.findFirstBySentToOrderByCreatedAt(username);
+        return chatRepository.findFirstBySentToOrderByCreatedAtDesc(username);
     }
 }
