@@ -12,6 +12,7 @@ import reactor.util.function.Tuple2;
 import java.time.Duration;
 import java.util.stream.Stream;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/api/chat")
