@@ -2,11 +2,13 @@ package com.anmolsekhon.reactiveauthentication.services;
 
 import com.anmolsekhon.reactiveauthentication.models.Chat;
 import com.anmolsekhon.reactiveauthentication.repositories.ChatRepository;
+import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,22 +18,27 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ChatService {
     private final ChatRepository chatRepository;
+    private final UserRepository userRepository;
     private final TextEncryptor textEncryptor;
 
-    public void send(String username, Chat chat) {
-        final String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
+    public Mono<Chat> send(String username, Chat chat) {
+        return userRepository.findByUsername(chat.getSentTo())
+                .switchIfEmpty(Mono.error(new IllegalArgumentException("User doesn't exist")))
+                .hasElement().flatMap(user -> {
+                    if (chat.getMessage().isEmpty())
+                        return Mono.error(new IllegalArgumentException("Message cannot be empty"));
 
-        final Chat builtChat = Chat.builder()
-                .id(UUID.randomUUID().toString())
-                .createdAt(LocalDateTime.now())
-                .sentTo(chat.getSentTo())
-                .sentBy(username)
-                .message(encryptedMessage)
-                .build();
+                    final String encryptedMessage = textEncryptor.encrypt(chat.getMessage());
 
-        //saving the chat to the database
-        chatRepository.save(builtChat)
-                .subscribe();
+                    final Chat builtChat = Chat.builder()
+                            .id(UUID.randomUUID().toString())
+                            .createdAt(LocalDateTime.now())
+                            .sentTo(chat.getSentTo())
+                            .sentBy(username)
+                            .message(encryptedMessage)
+                            .build();
+                    return chatRepository.save(builtChat);
+                });
     }
 
     public Flux<Chat> getAllChats(String username) {

@@ -7,11 +7,13 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 
 import java.time.Duration;
 import java.util.stream.Stream;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("v1/api/chat")
@@ -34,8 +36,8 @@ public class ChatController {
     }
 
     @PostMapping
-    public void send(@AuthenticationPrincipal String username,
-                     @RequestBody Chat chat) {
-        chatService.send(username, chat);
+    public Mono<Chat> send(@AuthenticationPrincipal String username,
+                           @RequestBody Chat chat) {
+            return chatService.send(username, chat);
     }
 }

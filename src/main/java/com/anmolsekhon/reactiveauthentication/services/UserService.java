@@ -28,9 +28,10 @@ public class UserService {
     }
 
     public Mono<User> register(AuthRequest authRequest) {
-        return userRepository.save(
-                new User(UUID.randomUUID().toString(), authRequest.getUsername(),
-                        passwordEncoder.encode(authRequest.getPassword()), true, DEFAULT_ROLES)
-        );
+        return userRepository.findByUsername(authRequest.getUsername()).hasElement()
+                .flatMap(user -> (user) ?  Mono.error(new IllegalArgumentException("exists")) :
+                        userRepository.save(new User(UUID.randomUUID().toString(), authRequest.getUsername(),
+                                passwordEncoder.encode(authRequest.getPassword()), true, DEFAULT_ROLES)
+                ));
     }
 }
