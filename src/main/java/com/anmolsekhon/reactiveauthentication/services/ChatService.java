@@ -52,6 +52,7 @@ public class ChatService {
                         .build());
     }
 
+    @Deprecated
     public Flux<Chat> getLatestChatForUser(String username) {
         return chatRepository.findFirstBySentToOrderByCreatedAtDesc(username);
     }

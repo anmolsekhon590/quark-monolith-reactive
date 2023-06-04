@@ -25,6 +25,7 @@ public class ChatController {
         return chatService.getAllChats(username);
     }
 
+    @Deprecated
     @GetMapping(value = "/latest", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Chat> getLatestChatForUser(@AuthenticationPrincipal String username) {
         return chatService.getLatestChatForUser(username)
