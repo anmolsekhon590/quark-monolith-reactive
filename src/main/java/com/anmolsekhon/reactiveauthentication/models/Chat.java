@@ -21,4 +21,5 @@ public class Chat {
     private LocalDateTime createdAt;
     private String sentTo;
     private String sentBy;
+    private Boolean hasBeenRead = false;
 }
