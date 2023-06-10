@@ -18,6 +18,14 @@ springbootwebfluxjjwt:
     secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
     expiration: 28800
 
+# SSL Configs
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: password
+    key-alias: keystore
+
 quark:
   text-encryptor:
     password: password
