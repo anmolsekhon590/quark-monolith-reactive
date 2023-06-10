@@ -1,4 +1,4 @@
-package com.anmolsekhon.reactiveauthentication.security;
+package com.anmolsekhon.reactiveauthentication.entities;
 
 import com.anmolsekhon.reactiveauthentication.constants.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;

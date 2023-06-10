@@ -5,7 +5,7 @@ import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
-import com.anmolsekhon.reactiveauthentication.security.User;
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

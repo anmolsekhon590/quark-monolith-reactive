@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.utility;
 
-import com.anmolsekhon.reactiveauthentication.security.User;
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

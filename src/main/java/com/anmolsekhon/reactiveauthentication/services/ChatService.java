@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.services;
 
-import com.anmolsekhon.reactiveauthentication.models.Chat;
+import com.anmolsekhon.reactiveauthentication.entities.Chat;
 import com.anmolsekhon.reactiveauthentication.repositories.ChatRepository;
 import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.repositories;
 
-import com.anmolsekhon.reactiveauthentication.models.Chat;
+import com.anmolsekhon.reactiveauthentication.entities.Chat;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 

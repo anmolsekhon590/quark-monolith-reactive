@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.controllers;
 
-import com.anmolsekhon.reactiveauthentication.models.Chat;
+import com.anmolsekhon.reactiveauthentication.entities.Chat;
 import com.anmolsekhon.reactiveauthentication.services.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

@@ -1,6 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.repositories;
 
-import com.anmolsekhon.reactiveauthentication.security.User;
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 

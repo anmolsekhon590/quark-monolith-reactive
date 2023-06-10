@@ -4,7 +4,7 @@ import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthResponse;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
-import com.anmolsekhon.reactiveauthentication.security.User;
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import com.anmolsekhon.reactiveauthentication.services.UserService;
 import com.anmolsekhon.reactiveauthentication.utility.JWTUtil;
 import lombok.AllArgsConstructor;
