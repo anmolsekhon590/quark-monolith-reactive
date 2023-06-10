@@ -1,5 +1,6 @@
 package com.anmolsekhon.reactiveauthentication.controllers;
 
+import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthResponse;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
@@ -9,16 +10,17 @@ import com.anmolsekhon.reactiveauthentication.utility.JWTUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-@AllArgsConstructor
-@RestController
 @CrossOrigin
-public class AuthenticationController {
+@RestController
+@AllArgsConstructor
+public class UserController {
 
     private JWTUtil jwtUtil;
     private PBKDF2Encoder passwordEncoder;
@@ -37,4 +39,8 @@ public class AuthenticationController {
         return userService.register(authRequest);
     }
 
+    @PostMapping("/friend")
+    public Mono<Void> addFriend(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
+        return userService.addFriend(username, friend);
+    }
 }
