@@ -37,6 +37,9 @@ public class User implements UserDetails {
     @Getter @Setter
     private List<String> friends = new ArrayList<>();
 
+    @Getter @Setter
+    private List<String> friendRequests = new ArrayList<>();
+
     @Override
     public String getUsername() {
         return username;

@@ -37,7 +37,7 @@ public class UserService {
                 .flatMap(user -> (user) ?  Mono.error(new IllegalArgumentException("exists")) :
                         userRepository.save(new User(UUID.randomUUID().toString(), authRequest.getUsername(),
                                 passwordEncoder.encode(authRequest.getPassword()), true, DEFAULT_ROLES,
-                                new ArrayList<>())
+                                new ArrayList<>(), new ArrayList<>())
                 ));
     }
 
