@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class AuthenticationManager implements ReactiveAuthenticationManager {
-
     private JWTUtil jwtUtil;
 
     @Override

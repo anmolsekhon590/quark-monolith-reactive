@@ -12,13 +12,10 @@ import java.util.Base64;
 
 @Component
 public class PBKDF2Encoder implements PasswordEncoder {
-
     @Value("${springbootwebfluxjjwt.password.encoder.secret}")
     private String secret;
-
     @Value("${springbootwebfluxjjwt.password.encoder.iteration}")
     private Integer iteration;
-
     @Value("${springbootwebfluxjjwt.password.encoder.keylength}")
     private Integer keylength;
 

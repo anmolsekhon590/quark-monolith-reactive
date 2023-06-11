@@ -21,9 +21,9 @@ import java.util.UUID;
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
     private final PBKDF2Encoder passwordEncoder;
+
     private static final List<Role> DEFAULT_ROLES = new ArrayList<>() {{
         this.add(Role.ROLE_USER);
     }};

@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserRepository extends ReactiveMongoRepository<User, String> {
     Mono<User> findByUsername(String username);
     Mono<UserView> findFriendsByUsername(String username);
+
+//    Projections
     interface UserView {
         List<String> getFriends();
     }
