@@ -1,20 +1,17 @@
 package com.anmolsekhon.reactiveauthentication.controllers;
 
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthResponse;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
-import com.anmolsekhon.reactiveauthentication.entities.User;
 import com.anmolsekhon.reactiveauthentication.services.UserService;
 import com.anmolsekhon.reactiveauthentication.utility.JWTUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin
@@ -42,5 +39,10 @@ public class UserController {
     @PostMapping("/friend")
     public Mono<Void> addFriend(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
         return userService.addFriend(username, friend);
+    }
+
+    @GetMapping("/friend")
+    public Mono<?> getAllFriends(@AuthenticationPrincipal String username) {
+        return userService.getAllFriends(username);
     }
 }

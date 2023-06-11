@@ -1,11 +1,11 @@
 package com.anmolsekhon.reactiveauthentication.services;
 
 import com.anmolsekhon.reactiveauthentication.constants.Role;
+import com.anmolsekhon.reactiveauthentication.entities.User;
 import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
-import com.anmolsekhon.reactiveauthentication.entities.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -48,5 +48,9 @@ public class UserService {
                 .doOnError(error -> log.error(error.getMessage()))
                 .then()
                 .cast(Void.class);
+    }
+
+    public Mono<?> getAllFriends(String username) {
+        return userRepository.findFriendsByUsername(username);
     }
 }
