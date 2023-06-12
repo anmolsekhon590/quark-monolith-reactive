@@ -43,7 +43,13 @@ public class UserService {
 
     public Mono<Void> addFriend(String username, Friend friend) {
         return userRepository.findByUsername(username)
-                .doOnNext(user -> user.getFriends().add(friend.username()))
+                .doOnNext(user -> {
+                    if (user.getFriendRequests().contains(friend.username())) {
+                        throw new IllegalArgumentException("Friend request already sent!");
+                    } else {
+                        user.getFriendRequests().add(friend.username());
+                    }
+                })
                 .flatMap(userRepository::save)
                 .doOnError(error -> log.error(error.getMessage()))
                 .then()
