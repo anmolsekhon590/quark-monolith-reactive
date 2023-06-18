@@ -53,7 +53,6 @@ public class UserService {
                     } else {
                         return Mono.error(new IllegalArgumentException("doesn't exist"));
                     }
-
                 });
     }
 
