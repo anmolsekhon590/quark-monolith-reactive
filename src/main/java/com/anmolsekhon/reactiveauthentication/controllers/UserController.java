@@ -40,6 +40,11 @@ public class UserController {
         return userService.addFriend(username, friend);
     }
 
+    @PostMapping("/friend" + "/accept")
+    public Mono<User> acceptFriendRequest(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
+        return userService.acceptFriendRequest(username, friend);
+    }
+
     @GetMapping("/friend")
     public Mono<?> getAllFriends(@AuthenticationPrincipal String username) {
         return userService.getAllFriends(username);

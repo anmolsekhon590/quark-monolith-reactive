@@ -59,4 +59,16 @@ public class UserService {
     public Mono<?> getAllFriends(String username) {
         return userRepository.findFriendsByUsername(username);
     }
+
+    public Mono<User> acceptFriendRequest(String username, Friend friend) {
+        return userRepository.findByUsername(username).flatMap(user -> {
+                    if (!user.getFriendRequests().contains(friend.username()))
+                        return Mono.error(new IllegalArgumentException("You have no such friend request"));
+                    user.getFriendRequests().remove(friend.username());
+                    user.getFriends().add(friend.username());
+                    userRepository.save(user);
+                    return Mono.just(user);
+                }
+        );
+    }
 }
