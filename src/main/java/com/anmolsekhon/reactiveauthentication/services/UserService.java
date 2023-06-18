@@ -46,9 +46,7 @@ public class UserService {
                 .flatMap(exists -> {
                     if (exists) {
                         return userRepository.findByUsername(username).doOnNext(
-                                user -> {
-                                    user.getFriendRequests().add(friend.username());
-                                }
+                                user -> user.getFriendRequests().add(friend.username())
                         ).flatMap(userRepository::save);
                     } else {
                         return Mono.error(new IllegalArgumentException("doesn't exist"));
