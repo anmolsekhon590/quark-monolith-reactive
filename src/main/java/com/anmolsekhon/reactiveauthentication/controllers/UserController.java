@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/friend")
-    public Mono<Void> addFriend(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
+    public Mono<User> addFriend(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
         return userService.addFriend(username, friend);
     }
 
