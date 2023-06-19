@@ -41,11 +41,11 @@ public class UserService {
                 ));
     }
 
-    public Mono<User> addFriend(String username, Friend friend) {
+    public Mono<User> addFriend(Friend friend) {
         return userRepository.findByUsername(friend.username()).hasElement()
                 .flatMap(exists -> {
                     if (exists) {
-                        return userRepository.findByUsername(username).doOnNext(
+                        return userRepository.findByUsername(friend.username()).doOnNext(
                                 user -> user.getFriendRequests().add(friend.username())
                         ).flatMap(userRepository::save);
                     } else {
@@ -67,5 +67,12 @@ public class UserService {
                     return Mono.just(user);
                 }
         ).flatMap(userRepository::save);
+    }
+
+    public Mono<User> rejectFriendRequest(String username, Friend friend) {
+        return userRepository.findByUsername(username).flatMap(user -> {
+           user.getFriendRequests().remove(friend.username());
+           return Mono.just(user);
+        }).flatMap(userRepository::save);
     }
 }

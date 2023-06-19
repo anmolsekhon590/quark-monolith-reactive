@@ -36,13 +36,18 @@ public class UserController {
     }
 
     @PostMapping("/friend")
-    public Mono<User> addFriend(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
-        return userService.addFriend(username, friend);
+    public Mono<User> addFriend(@RequestBody Friend friend) {
+        return userService.addFriend(friend);
     }
 
     @PostMapping("/friend" + "/accept")
     public Mono<User> acceptFriendRequest(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
         return userService.acceptFriendRequest(username, friend);
+    }
+
+    @PostMapping("/friend" + "/reject")
+    public Mono<User> rejectFriendRequest(@AuthenticationPrincipal String username, @RequestBody Friend friend) {
+        return userService.rejectFriendRequest(username, friend);
     }
 
     @GetMapping("/friend")
