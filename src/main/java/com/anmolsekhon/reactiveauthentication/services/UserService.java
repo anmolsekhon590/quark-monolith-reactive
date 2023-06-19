@@ -64,9 +64,8 @@ public class UserService {
                         return Mono.error(new IllegalArgumentException("You have no such friend request"));
                     user.getFriendRequests().remove(friend.username());
                     user.getFriends().add(friend.username());
-                    userRepository.save(user);
                     return Mono.just(user);
                 }
-        );
+        ).flatMap(userRepository::save);
     }
 }
