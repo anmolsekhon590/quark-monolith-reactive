@@ -4,6 +4,7 @@ import com.anmolsekhon.reactiveauthentication.entities.User;
 import com.anmolsekhon.reactiveauthentication.models.Friend;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthRequest;
 import com.anmolsekhon.reactiveauthentication.models.auth.AuthResponse;
+import com.anmolsekhon.reactiveauthentication.repositories.UserRepository;
 import com.anmolsekhon.reactiveauthentication.security.PBKDF2Encoder;
 import com.anmolsekhon.reactiveauthentication.services.UserService;
 import com.anmolsekhon.reactiveauthentication.utility.JWTUtil;
@@ -51,7 +52,7 @@ public class UserController {
     }
 
     @GetMapping("/friend")
-    public Mono<?> getAllFriends(@AuthenticationPrincipal String username) {
+    public Mono<UserRepository.UserView> getAllFriends(@AuthenticationPrincipal String username) {
         return userService.getAllFriends(username);
     }
 }

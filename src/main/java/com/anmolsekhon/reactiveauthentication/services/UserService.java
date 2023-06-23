@@ -54,7 +54,7 @@ public class UserService {
                 });
     }
 
-    public Mono<?> getAllFriends(String username) {
+    public Mono<UserRepository.UserView> getAllFriends(String username) {
         return userRepository.findFriendsByUsername(username);
     }
 
