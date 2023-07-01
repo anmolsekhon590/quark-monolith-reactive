@@ -1,3 +1,5 @@
+echo "           STAGE 0 - CREATE A CLEAN BUILD         \n"
+CALL .\gradlew clean build
 echo "           STAGE 1 - PREPARE NATIVE IMAGE         \n"
 CALL .\gradlew bootBuildImage
 echo "           STAGE 2 - UPLOAD NATIVE IMAGE TO MINIKUBE"
