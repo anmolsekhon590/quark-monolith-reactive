@@ -76,10 +76,10 @@ public class UserService {
                 .flatMap(userRepository::save);
     }
 
-//    public Mono<User> rejectFriendRequest(String username, Friend friend) {
-//        return userRepository.findByUsername(username).flatMap(user -> {
-//           user.getFriendRequests().remove(friend.username());
-//           return Mono.just(user);
-//        }).flatMap(userRepository::save);
-//    }
+    public Mono<User> rejectFriendRequest(String username, Friend friend) {
+        return userRepository.findByUsername(username).flatMap(user -> {
+           user.getFriendRequestsReceived().remove(friend.username());
+           return Mono.just(user);
+        }).flatMap(userRepository::save);
+    }
 }
