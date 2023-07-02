@@ -13,6 +13,7 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
 //    Projections
     interface UserView {
         List<String> getFriends();
-        List<String> getFriendRequests();
+        List<String> getFriendRequestsSent();
+        List<String> getFriendRequestsReceived();
     }
 }
