@@ -27,9 +27,7 @@ public class LiveChatService {
         if(chatMap.containsKey(username)) {
             chatMap.get(username).add(chat);
         } else {
-            chatMap.put(username, new ArrayList<>(){{
-                add(chat);
-            }});
+            chatMap.put(username, new ArrayList<>(){{ add(chat); }});
         }
     }
 
