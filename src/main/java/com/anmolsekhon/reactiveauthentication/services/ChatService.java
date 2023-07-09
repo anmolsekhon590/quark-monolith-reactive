@@ -38,7 +38,7 @@ public class ChatService {
                             .sentBy(username)
                             .message(encryptedMessage)
                             .build();
-                    liveChatService.addLiveChatToChatMap(builtChat.getSentTo(), builtChat);
+                    liveChatService.addLiveChatToChatMap(builtChat);
                     return chatRepository.save(builtChat);
                 });
     }

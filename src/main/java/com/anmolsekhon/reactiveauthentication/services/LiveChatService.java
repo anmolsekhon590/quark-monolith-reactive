@@ -21,7 +21,7 @@ public class LiveChatService {
         return liveChats;
     }
 
-    public void addLiveChatToChatMap(String username, Chat chat) {
+    public void addLiveChatToChatMap(Chat chat) {
         if (chatMap.containsKey(chat.getSentTo())) {
             chatMap.get(chat.getSentTo()).add(chat);
         } else {
