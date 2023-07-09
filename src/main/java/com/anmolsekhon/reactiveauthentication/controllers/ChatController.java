@@ -29,8 +29,7 @@ public class ChatController {
         return chatService.getAllChats(username);
     }
 
-    @Deprecated
-    @GetMapping(value = "/latest", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping("/latest")
     public Flux<ServerSentEvent<List<Chat>>> getLatestChatListForUser(@AuthenticationPrincipal String username) {
         return liveChatService.sseChatFluxForUser(username);
     }
