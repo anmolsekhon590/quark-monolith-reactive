@@ -6,28 +6,26 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class LiveChatService {
     private final Map<String, List<Chat>> chatMap = new HashMap<>();
 
     public List<Chat> getAllLiveChats(String username) {
-        List<Chat> liveChats = chatMap.get(username);
-        if (liveChats != null && !liveChats.isEmpty()) {
-           liveChats.clear();
+        List<Chat> liveChats = new ArrayList<>();
+        if (chatMap.get(username) != null && !chatMap.get(username).isEmpty()) {
+            liveChats = Collections.unmodifiableList(chatMap.get(username));
+            chatMap.remove(username);
         }
         return liveChats;
     }
 
     public void addLiveChatToChatMap(String username, Chat chat) {
-        if(chatMap.containsKey(username)) {
-            chatMap.get(username).add(chat);
+        if (chatMap.containsKey(chat.getSentTo())) {
+            chatMap.get(chat.getSentTo()).add(chat);
         } else {
-            chatMap.put(username, new ArrayList<>(){{ add(chat); }});
+            chatMap.put(chat.getSentTo(), new ArrayList<>(){{ add(chat); }});
         }
     }
 

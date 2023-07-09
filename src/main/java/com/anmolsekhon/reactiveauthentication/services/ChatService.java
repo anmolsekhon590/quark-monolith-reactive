@@ -20,6 +20,7 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final UserRepository userRepository;
     private final TextEncryptor textEncryptor;
+    private final LiveChatService liveChatService;
 
     public Mono<Chat> send(String username, Chat chat) {
         return userRepository.findByUsername(chat.getSentTo())
@@ -37,6 +38,7 @@ public class ChatService {
                             .sentBy(username)
                             .message(encryptedMessage)
                             .build();
+                    liveChatService.addLiveChatToChatMap(builtChat.getSentTo(), builtChat);
                     return chatRepository.save(builtChat);
                 });
     }
