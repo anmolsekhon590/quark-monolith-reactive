@@ -10,6 +10,7 @@ import java.util.*;
 
 @Service
 public class LiveChatService {
+    // TODO: Replace this with redis or Kafka
     private final Map<String, List<Chat>> chatMap = new HashMap<>();
 
     public List<Chat> getAllLiveChats(String username) {
